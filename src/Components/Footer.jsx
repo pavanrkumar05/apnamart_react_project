@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const Footer = () => {
 
@@ -27,7 +26,7 @@ const Footer = () => {
                         {
                             pathBool
                             ?
-                            // admin navbar
+                            // admin footer
                             <ul>
                                 <li><NavLink to='/adminportal/'>Home</NavLink></li>
                                 <li><NavLink to='/adminportal/products'>Products</NavLink></li>
@@ -35,7 +34,7 @@ const Footer = () => {
                                 <li><NavLink to='/'>Logout</NavLink></li>
                             </ul>
                             :
-                            // user navbar
+                            // user footer
                             <ul>
                                 <li><NavLink to='/userportal/'>Home</NavLink></li>
                                 <li><NavLink to='/userportal/about'>About</NavLink></li>
@@ -48,18 +47,15 @@ const Footer = () => {
                     <div className="right">
                         <h2>Follow Us</h2>
                         <div className="icons">
-                            <a href="#">
-                                <FacebookIcon />
-                            </a>
-                            <a href="#">
+                            <NavLink to='https://www.instagram.com/pavan_reddy1705?igsh=Z2cwbWNybHBzZjhz'>
                                 <InstagramIcon />
-                            </a>
-                            <a href="#">
-                                <TwitterIcon />
-                            </a>
-                            <a href="#">
+                            </NavLink>
+                            <NavLink to='https://www.linkedin.com/in/pavan-kumar-r-605738252/'>
+                                <LinkedInIcon/>
+                            </NavLink>
+                            <NavLink to='https://github.com/pavanrkumar05'>
                                 <GitHubIcon />
-                            </a>
+                            </NavLink>
                         </div>
                     </div>
                 </div>
