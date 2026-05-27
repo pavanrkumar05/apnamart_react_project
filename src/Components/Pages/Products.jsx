@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { DoubleArrow } from '@mui/icons-material'
+import SearchIcon from '@mui/icons-material/Search'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const Products = () => {
@@ -10,6 +11,7 @@ const Products = () => {
   let [products, setProducts] = useState([])
   let [categorypro, setcategorypro] = useState([])
   let [favItems, setFavItems] = useState([])
+  let [search, setSearch] = useState("")
 
   let navigate = useNavigate()
 
@@ -27,9 +29,9 @@ const Products = () => {
   }, [])
 
   let handleviewmore = (productid) => {
-    pathBool 
-    ? navigate(`/adminportal/viewmore/${productid}`) 
-    : navigate(`/userportal/viewmore/${productid}`)
+    pathBool
+      ? navigate(`/adminportal/viewmore/${productid}`)
+      : navigate(`/userportal/viewmore/${productid}`)
   }
 
   let filterproducts = [
@@ -61,11 +63,28 @@ const Products = () => {
     }
   }
 
+  let searchedProducts = categorypro.filter((elem) => {
+    return elem.title.toLowerCase().includes(search.toLowerCase())
+  })
+
   return (
     <>
       <div className="products">
+
         <div className="header">
           <h1>PRODUCTS</h1>
+
+          <div className="search-bar">
+            <SearchIcon className='search-icon' />
+
+            <input
+              type="text"
+              placeholder='Search Products...'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+
           <div className='filter-btn'>
             <ul>
               {
@@ -81,53 +100,70 @@ const Products = () => {
               }
             </ul>
           </div>
-              {
-                pathBool 
-                &&
-                <button
-                  className="header-btn"
-                  onClick={() => navigate('/adminportal/addproducts')}>
-                  Add Product <DoubleArrow />
-                </button>
-              }
+
+          {
+            pathBool
+            &&
+            <button
+              className="header-btn"
+              onClick={() => navigate('/adminportal/addproducts')}>
+              Add Product <DoubleArrow />
+            </button>
+          }
         </div>
+
         <div className="container">
           {
-            categorypro.map((elem, index) => {
+            searchedProducts.map((elem, index) => {
+
               let { id, title, image, category } = elem
+
               return (
                 <div className="card" key={index}>
+
                   <div className='top'>
                     <div className="cate">
                       {category}
                     </div>
+
                     <button
                       className={`wish ${favItems.includes(id) ? 'active' : ''}`}
                       onClick={() => handlebool(id)}>
+
                       {
-                        favItems.includes(id)? <FavoriteIcon /> : <FavoriteBorderIcon />
+                        favItems.includes(id)
+                          ? <FavoriteIcon />
+                          : <FavoriteBorderIcon />
                       }
+
                     </button>
                   </div>
+
                   <div className="img">
                     <img src={image} alt="No Image" />
                   </div>
+
                   <div className="title">
                     {title}
                   </div>
+
                   <div className="btn">
                     <button
                       className='view'
                       onClick={() => handleviewmore(id)}>
+
                       ViewMore &nbsp;
                       <DoubleArrow />
+
                     </button>
                   </div>
+
                 </div>
               )
             })
           }
         </div>
+
       </div>
     </>
   )
