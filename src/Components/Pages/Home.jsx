@@ -12,7 +12,7 @@ const Home = () => {
           }
         </div>
         <div className="info">
-          <h1>APNA MART - SHOP SMART. </h1>
+          <h1>APNA MART </h1>
           <marquee behavior="scroll" direction="">🔥 Mega Deals Are Live! Up To 70% OFF | Free Shipping 🚚 | Easy Returns 🔄 | Shop Trending Products Today 🛍️</marquee>
         </div>
       </div>

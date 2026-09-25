@@ -4,9 +4,9 @@ import { NavLink, useLocation } from 'react-router-dom'
 const NavBar = () => {
 
     let location =useLocation()
+
     let pathBool=location.pathname.startsWith('/adminportal')
     // console.log(pathBool)
-    console.log(location.pathname);
     
   return (
     <>
